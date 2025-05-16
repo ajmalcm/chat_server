@@ -14,8 +14,14 @@ import { getSockets } from "./lib/helper.js";
 import { Message } from "./models/messageModel.js";
 import cors from "cors"
 import {v2 as cloudinary} from "cloudinary";
-import { corsConfig } from "./constants/config.js";
+// import { corsConfig } from "./constants/config.js";
 import { socketAuthenticator } from "./middlewares/auth.js";
+
+ const corsConfig={
+    origin:["http://localhost:5173","http://localhost:4173",process.env.CLIENT_URL],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials:true
+}
 
 const app=express();
 const server=createServer(app) //for socket setup
