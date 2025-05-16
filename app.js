@@ -4,6 +4,9 @@ import chatRouter from "./routes/chatRoutes.js"
 import adminRouter from "./routes/adminRoutes.js"
 import { connectDB } from "./utils/features.js";
 import dotenv from "dotenv"
+dotenv.config({
+    path:"./.env"
+});
 import { errorMiddleware } from "./middlewares/error.js";
 import cookieParser from "cookie-parser";
 import { Server } from "socket.io";
@@ -26,9 +29,6 @@ import { socketAuthenticator } from "./middlewares/auth.js";
 const app=express();
 const server=createServer(app) //for socket setup
 const io=new Server(server,{cors:corsConfig}); //for socket setup
-dotenv.config({
-    path:"./.env"
-});
 const uri=process.env.CONNECTION_URI
 export const adminSecretKey=process.env.ADMIN_SECRET_KEY || "shdcdljcsdknc";
 export const envMode=process.env.NODE_ENV.trim() || "PRODUCTION";
